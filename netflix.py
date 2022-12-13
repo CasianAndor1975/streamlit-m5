@@ -41,11 +41,11 @@ if st.sidebar.checkbox('Mostrar todos los filmes'):
 titulofilme = st.sidebar.text_input('Titulo del filme :')
 btnBuscar = st.sidebar.button('Buscar filmes')
 
-if (btnBuscar):
-   data_filme = filter_data_by_filme(titulofilme.upper())
-   count_row = data_filme.shape[0]  # Gives number of rows
-   st.write(f"Total filmes mostrados : {count_row}")
-   st.write(data_filme)
+if btnBuscar:
+    data_filme = filter_data_by_filme(titulofilme.upper())
+    count_row = data_filme.shape[0]  # Gives number of rows
+    st.write(f"Total filmes mostrados : {count_row}")
+    st.write(data_filme)
 
 
 
