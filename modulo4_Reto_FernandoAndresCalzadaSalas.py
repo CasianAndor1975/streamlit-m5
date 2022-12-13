@@ -30,7 +30,7 @@ def filter_by_emp_id(emp):
     return filtered_data_emp
 
 def filter_by_educ_level(level):
-    filtered_data_level = data[data['Education_Level'].str.upper().str.contains(str(level))]
+    filtered_data_level = data[data['Education_Level'] == level]
     return filtered_data_level
 
 
@@ -62,32 +62,47 @@ if btnEmpId:
     st.write(data_emp_id)
 
 # --- HOMETOWN
-selected_hometown = st.sidebar.selectbox("Seleccionar Residencia (Hometown)", data['Hometown'].unique())
-btnFilterbyHometown = st.sidebar.button('Filtrar Hometown ')
+selected_hometown = sidebar.radio("Select Class", data['Hometown'].unique())
+btnFilterbyHometown1 = st.sidebar.button('Filtrar Hometown 1')
 
-if btnFilterbyHometown:
+if btnFilterbyHometown1:
     filterbyhome = filter_by_hometown(selected_hometown)
     count_row = filterbyhome.shape[0]  # Gives number of rows
     st.write(f"Total empleados : {count_row}")
     st.dataframe(filterbyhome)
 
 # --- UNIT
-selected_unit = st.sidebar.selectbox("Seleccionar Unidad (Unit)", data['Unit'].unique())
-btnFilterbyUnit = st.sidebar.button('Filtrar Unidad')
 
-if btnFilterbyUnit:
-    filterbyunit = filter_by_unit(selected_unit)
-    count_row = filterbyunit.shape[0]  # Gives number of rows
-    st.write(f"Total empleados : {count_row}")
-    st.dataframe(filterbyunit)
 
 # ########################## PASO 10  #######################################
 
-selected_level = str(st.sidebar.selectbox("Seleccionar Nivel Educativo", data['Education_Level'].unique()))
+selected_level = st.sidebar.selectbox("Seleccionar Nivel Educativo", data['Education_Level'].unique())
 btnFilterbyLevel = st.sidebar.button('Filtrar Nivel')
 
 if btnFilterbyLevel:
-    filterbylevel = filter_by_educ_level(str(selected_level))
+    st.write(f"NIVEL ELEGIDO : {selected_level}")
+    filterbylevel = filter_by_educ_level(selected_level)
     count_row = filterbylevel.shape[0]  # Gives number of rows
     st.write(f"Total empleados : {count_row}")
     st.dataframe(filterbylevel)
+
+# ########################## PASO 11  #######################################
+selected_hometown2 = st.sidebar.selectbox("Seleccionar Residencia (Hometown)", data['Hometown'].unique())
+btnFilterbyHometown2 = st.sidebar.button('Filtrar Hometown 2')
+
+if btnFilterbyHometown2:
+    filterbyhome = filter_by_hometown(selected_hometown2)
+    count_row = filterbyhome.shape[0]  # Gives number of rows
+    st.write(f"Total empleados : {count_row}")
+    st.dataframe(filterbyhome)
+
+# ########################## PASO 12  #######################################
+
+selected_unit2 = st.sidebar.selectbox("Seleccionar Unidad (Unit)", data['Unit'].unique())
+btnFilterbyUnit2 = st.sidebar.button('Filtrar Unidad 2')
+
+if btnFilterbyUnit2:
+    filterbyunit = filter_by_unit(selected_unit2)
+    count_row = filterbyunit.shape[0]  # Gives number of rows
+    st.write(f"Total empleados : {count_row}")
+    st.dataframe(filterbyunit)
