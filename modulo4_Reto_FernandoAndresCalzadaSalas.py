@@ -1,6 +1,7 @@
 import codecs
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
 #import numpy as np
 
 st.title('Netflix app')
@@ -106,3 +107,47 @@ if btnFilterbyUnit2:
     count_row = filterbyunit.shape[0]  # Gives number of rows
     st.write(f"Total empleados : {count_row}")
     st.dataframe(filterbyunit)
+
+# ########################## PASO 13  #######################################
+st.markdown("___")
+fig, ax = plt.subplots()
+ax.hist(data.Age)
+st.header("Edad de los empleados")
+st.pyplot(fig)
+
+# ########################## PASO 14  #######################################
+st.markdown("___")
+fig, ax2 = plt.subplots()
+plt.xticks(rotation=90)
+ax2.hist(data.Unit)
+st.header("Frecuencia por Unidad")
+st.pyplot(fig)
+
+
+# ########################## PASO 15  #######################################
+st.markdown("___")
+fig3, ax3 = plt.subplots()
+ax3.scatter(data.Hometown, data.Attrition_rate)
+ax3.set_xlabel("Ciudad")
+ax3.set_ylabel("Deserción")
+st.header("Índice de deserción por ciudad")
+st.pyplot(fig3)
+
+
+# ########################## PASO 16  #######################################
+st.markdown("___")
+fig4, ax4 = plt.subplots()
+ax4.scatter(data.Age, data.Attrition_rate)
+ax4.set_xlabel("Edad")
+ax4.set_ylabel("Deserción")
+st.header("Edad Vs. Índice de deserción")
+st.pyplot(fig4)
+
+# ########################## PASO 17  #######################################
+st.markdown("___")
+fig5, ax5 = plt.subplots()
+ax5.scatter(data.Time_of_service, data.Attrition_rate)
+ax5.set_xlabel("Tiempo")
+ax5.set_ylabel("Deserción")
+st.header("Tiempo de servicio Vs. Índice de deserción")
+st.pyplot(fig5)
