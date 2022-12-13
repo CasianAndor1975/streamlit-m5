@@ -29,6 +29,10 @@ def filter_by_emp_id(emp):
     filtered_data_emp = data[data['Employee_ID'].str.upper().str.contains(emp)]
     return filtered_data_emp
 
+def filter_by_educ_level(level):
+    filtered_data_level = data[data['Education_Level'].str.upper().str.contains(str(level))]
+    return filtered_data_level
+
 
 data_load_state = st.text('Loading cicle nyc data...')
 data = load_data(1000)
@@ -76,3 +80,14 @@ if btnFilterbyUnit:
     count_row = filterbyunit.shape[0]  # Gives number of rows
     st.write(f"Total empleados : {count_row}")
     st.dataframe(filterbyunit)
+
+# ########################## PASO 10  #######################################
+
+selected_level = str(st.sidebar.selectbox("Seleccionar Nivel Educativo", data['Education_Level'].unique()))
+btnFilterbyLevel = st.sidebar.button('Filtrar Nivel')
+
+if btnFilterbyLevel:
+    filterbylevel = filter_by_educ_level(str(selected_level))
+    count_row = filterbylevel.shape[0]  # Gives number of rows
+    st.write(f"Total empleados : {count_row}")
+    st.dataframe(filterbylevel)
